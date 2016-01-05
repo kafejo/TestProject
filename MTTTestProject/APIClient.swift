@@ -16,7 +16,8 @@ enum APIClientError: ErrorType {
 
 class APIClient {
     
-    private static let baseURL = "http://api.worldweatheronline.com/free/v2"
+    private static let baseURL = "https://api.worldweatheronline.com/free/v2"
+    private static let APIKey = "f4530bb95f0ab0edf756bcfdcb8ef"
     
     /// Enables request logging
     static var loggingEnabled = false
@@ -30,7 +31,6 @@ class APIClient {
      @param encoding Parameter encoding, default `.URL`
      @param headers HTTP headers, default `nil`
      
-     
      @return Promise with serialized JSON
      */
     
@@ -38,7 +38,12 @@ class APIClient {
         
         return Promise { success, reject in
             
-            let request = Alamofire.request(method, APIClient.baseURL + URLString, parameters: parameters, encoding: encoding, headers: headers)
+            var params: [String: AnyObject] = parameters ?? [:]
+            
+            params["key"] = APIKey
+            params["format"] = "json"
+            
+            let request = Alamofire.request(method, APIClient.baseURL + URLString, parameters: params, encoding: encoding, headers: headers)
             if loggingEnabled {
                 print(request)
                 print("Params: \(parameters)")

@@ -22,8 +22,8 @@ class WeatherServicesSpec: QuickSpec {
             
             it("can find Dublin") {
                 waitUntil(timeout: 10) { done in
-                    WeatherServices.search(cityQuery: "dublin").then { location -> Void in
-                        expect(location.name).to(equal("dublin"))
+                    WeatherServices.search(locationQuery: "dublin").then { location -> Void in
+                        expect(location.name).to(contain("Dublin"))
                         expect(location.currentCondition).toNot(beNil())
                         expect(location.forecast).notTo(beNil())
                         expect(location.forecast?.count).to(equal(5))

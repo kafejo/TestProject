@@ -23,6 +23,7 @@
 		9026A0641C3C5D02004429DE /* WeatherServicesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026A0631C3C5D02004429DE /* WeatherServicesSpec.swift */; };
 		9026A0681C3C5DDD004429DE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9026A0661C3C5DDD004429DE /* Model.xcdatamodeld */; };
 		9026A06A1C3C5EBD004429DE /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026A0691C3C5EBD004429DE /* LocationViewController.swift */; };
+		9026A06E1C3C6A00004429DE /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026A06D1C3C6A00004429DE /* Decoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		9026A0631C3C5D02004429DE /* WeatherServicesSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherServicesSpec.swift; sourceTree = "<group>"; };
 		9026A0671C3C5DDD004429DE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		9026A0691C3C5EBD004429DE /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		9026A06D1C3C6A00004429DE /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		FF8424752B55190F2A67CBC7 /* Pods-MTTTestProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTTTestProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTTTestProjectTests/Pods-MTTTestProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +152,7 @@
 		9026A05F1C3C5C19004429DE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9026A06D1C3C6A00004429DE /* Decoder.swift */,
 				9026A0521C3C5BE7004429DE /* StackManager.swift */,
 				9026A0661C3C5DDD004429DE /* Model.xcdatamodeld */,
 				9026A0541C3C5BE7004429DE /* Location+CoreDataProperties.swift */,
@@ -399,6 +402,7 @@
 				9026A02F1C3C5B73004429DE /* AppDelegate.swift in Sources */,
 				9026A06A1C3C5EBD004429DE /* LocationViewController.swift in Sources */,
 				9026A0681C3C5DDD004429DE /* Model.xcdatamodeld in Sources */,
+				9026A06E1C3C6A00004429DE /* Decoder.swift in Sources */,
 				9026A0501C3C5BCD004429DE /* APIClient.swift in Sources */,
 				9026A0581C3C5BE7004429DE /* StackManager.swift in Sources */,
 				9026A05C1C3C5BE7004429DE /* Weather+CoreDataProperties.swift in Sources */,
@@ -533,6 +537,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MTTTestProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.MTTTestProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -545,6 +550,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MTTTestProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.MTTTestProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

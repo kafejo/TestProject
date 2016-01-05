@@ -1,6 +1,6 @@
 //
 //  Weather+CoreDataProperties.swift
-//  mtt-test-project
+//  MTTTestProject
 //
 //  Created by Aleš Kocur on 05/01/16.
 //  Copyright © 2016 Aleš Kocur. All rights reserved.
@@ -14,8 +14,9 @@ import CoreData
 
 extension Weather {
 
-    @NSManaged var temperatureC: NSNumber?
-    @NSManaged var temperatureF: NSNumber?
+    @NSManaged var maxTempC: NSNumber?
+    @NSManaged var minTempC: NSNumber?
+    @NSManaged var date: NSDate?
     @NSManaged var locationCurrentCondition: Location?
     @NSManaged var locationForecast: Location?
 

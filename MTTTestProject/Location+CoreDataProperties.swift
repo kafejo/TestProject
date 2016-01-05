@@ -1,6 +1,6 @@
 //
 //  Location+CoreDataProperties.swift
-//  mtt-test-project
+//  MTTTestProject
 //
 //  Created by Aleš Kocur on 05/01/16.
 //  Copyright © 2016 Aleš Kocur. All rights reserved.
@@ -15,7 +15,7 @@ import CoreData
 extension Location {
 
     @NSManaged var name: String?
-    @NSManaged var currentCondition: NSManagedObject?
+    @NSManaged var currentCondition: Weather?
     @NSManaged var forecast: NSSet?
 
 }
