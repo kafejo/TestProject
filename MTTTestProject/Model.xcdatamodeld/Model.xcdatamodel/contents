@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+    <entity name="Location" representedClassName=".Location" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="currentCondition" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Weather" inverseName="locationCurrentCondition" inverseEntity="Weather" syncable="YES"/>
+        <relationship name="forecast" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Weather" inverseName="locationForecast" inverseEntity="Weather" syncable="YES"/>
+    </entity>
+    <entity name="Weather" representedClassName=".Weather" syncable="YES">
+        <attribute name="temperatureC" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="temperatureF" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="locationCurrentCondition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="currentCondition" inverseEntity="Location" syncable="YES"/>
+        <relationship name="locationForecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="forecast" inverseEntity="Location" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Weather" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Location" positionX="-54" positionY="-9" width="128" height="90"/>
+    </elements>
+</model>
