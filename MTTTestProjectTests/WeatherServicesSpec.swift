@@ -21,7 +21,18 @@ class WeatherServicesSpec: QuickSpec {
         describe("Weather services") {
             
             it("can find Dublin") {
-                
+                waitUntil(timeout: 10) { done in
+                    WeatherServices.search(cityQuery: "dublin").then { location -> Void in
+                        expect(location.name).to(equal("dublin"))
+                        expect(location.currentCondition).toNot(beNil())
+                        expect(location.forecast).notTo(beNil())
+                        expect(location.forecast?.count).to(equal(5))
+                        done()
+                    }.error { err in
+                        expect(true).to(beFalse(), description: "This should not be called at all. (\(err))")
+                        done()
+                    }
+                }
             }
         }
     }
