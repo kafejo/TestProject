@@ -42,7 +42,7 @@ class WeatherServices {
             }
             
             if let forecast: [Weather] = json["data"]["weather"].jsonArray.flatMap(Decoder.decode) {
-                location.forecast = NSSet(array: forecast)
+                location.forecast = NSOrderedSet(array: forecast)
             }
             
             if let currentCondition: Weather = json["data"]["current_condition"].jsonArray?.first.flatMap(Decoder.decode) {

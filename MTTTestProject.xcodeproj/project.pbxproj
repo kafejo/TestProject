@@ -28,6 +28,8 @@
 		90A73A261C416F29005B1003 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A73A251C416F29005B1003 /* LocationViewModel.swift */; };
 		90A73A281C416F3D005B1003 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A73A271C416F3D005B1003 /* ViewModel.swift */; };
 		90A73A2A1C416FE2005B1003 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A73A291C416FE2005B1003 /* WeatherViewModel.swift */; };
+		90A73A2C1C4172CC005B1003 /* LocationViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A73A2B1C4172CC005B1003 /* LocationViewModelSpec.swift */; };
+		90A73A2E1C4172DE005B1003 /* WeatherViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A73A2D1C4172DE005B1003 /* WeatherViewModelSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		90A73A251C416F29005B1003 /* LocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		90A73A271C416F3D005B1003 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		90A73A291C416FE2005B1003 /* WeatherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		90A73A2B1C4172CC005B1003 /* LocationViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewModelSpec.swift; sourceTree = "<group>"; };
+		90A73A2D1C4172DE005B1003 /* WeatherViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModelSpec.swift; sourceTree = "<group>"; };
 		FF8424752B55190F2A67CBC7 /* Pods-MTTTestProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTTTestProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTTTestProjectTests/Pods-MTTTestProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,7 +146,8 @@
 		9026A0421C3C5B73004429DE /* MTTTestProjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				9026A0631C3C5D02004429DE /* WeatherServicesSpec.swift */,
+				90A73A301C417C17005B1003 /* Services */,
+				90A73A2F1C417C0D005B1003 /* ViewModels */,
 				9026A0451C3C5B73004429DE /* Info.plist */,
 			);
 			path = MTTTestProjectTests;
@@ -196,6 +201,23 @@
 			children = (
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		90A73A2F1C417C0D005B1003 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				90A73A2B1C4172CC005B1003 /* LocationViewModelSpec.swift */,
+				90A73A2D1C4172DE005B1003 /* WeatherViewModelSpec.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		90A73A301C417C17005B1003 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9026A0631C3C5D02004429DE /* WeatherServicesSpec.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		DAA01DB9DECB172F6C29CC94 /* Frameworks */ = {
@@ -429,7 +451,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90A73A2C1C4172CC005B1003 /* LocationViewModelSpec.swift in Sources */,
 				9026A0641C3C5D02004429DE /* WeatherServicesSpec.swift in Sources */,
+				90A73A2E1C4172DE005B1003 /* WeatherViewModelSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

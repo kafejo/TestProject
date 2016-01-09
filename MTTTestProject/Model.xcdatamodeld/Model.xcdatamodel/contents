@@ -3,7 +3,7 @@
     <entity name="Location" representedClassName=".Location" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="currentCondition" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Weather" inverseName="locationCurrentCondition" inverseEntity="Weather" syncable="YES"/>
-        <relationship name="forecast" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Weather" inverseName="locationForecast" inverseEntity="Weather" syncable="YES"/>
+        <relationship name="forecast" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Weather" inverseName="locationForecast" inverseEntity="Weather" syncable="YES"/>
     </entity>
     <entity name="Weather" representedClassName=".Weather" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -13,7 +13,7 @@
         <relationship name="locationForecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="forecast" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Weather" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="Location" positionX="-54" positionY="-9" width="128" height="90"/>
+        <element name="Weather" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>
