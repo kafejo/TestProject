@@ -32,6 +32,5 @@ extension Location: DecodableManagedObject {
     func decode(json: JSON) {
         
     }
-
 }
 
