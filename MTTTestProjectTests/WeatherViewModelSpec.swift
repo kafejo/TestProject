@@ -17,7 +17,7 @@ class WeatherViewModelSpec: QuickSpec {
         var weatherViewModel: WeatherViewModel!
         
         beforeSuite {
-            StackManager.setupStack()
+            StackManager.setupStack(forTesting: true)
         }
         
         beforeEach {
@@ -31,12 +31,12 @@ class WeatherViewModelSpec: QuickSpec {
         describe("Weather view model") {
             
             it("has temperature") {
-                expect(weatherViewModel.temperature).to(equal("10-12"))
+                expect(weatherViewModel.temperature.value).to(equal("10/12"))
             }
             
             // With setting language to English and locale to Ireland
             it("has week day abbreviation of it day") {
-                expect(weatherViewModel.dayOfWeekAbb).to(equal("Sat"), description: "This test depends on region and language settings of testing device")
+                expect(weatherViewModel.dayOfWeekAbb).to(equal("Saturday"), description: "This test depends on region and language settings of testing device")
             }
         }
     }

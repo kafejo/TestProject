@@ -17,7 +17,7 @@ class LocationViewModelSpec: QuickSpec {
         var locationViewModel: LocationViewModel!
         
         beforeSuite {
-            StackManager.setupStack()
+            StackManager.setupStack(forTesting: true)
         }
         
         beforeEach {

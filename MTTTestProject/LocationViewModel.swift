@@ -6,7 +6,6 @@
 //  Copyright © 2016 Aleš Kocur. All rights reserved.
 //
 
-
 class LocationViewModel: ViewModel<Location> {
     
     private(set) lazy var currentCondition: WeatherViewModel = WeatherViewModel(self.model.currentCondition!)

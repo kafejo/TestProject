@@ -16,11 +16,18 @@ enum APIClientError: ErrorType {
 
 class APIClient {
     
-    private static let baseURL = "https://api.worldweatheronline.com/free/v2"
-    private static let APIKey = "f4530bb95f0ab0edf756bcfdcb8ef"
+    private static let baseURL = "https://api.worldweatheronline.com/premium/v1"
+    private static let APIKey = "3bc440de85d822222efcb3f234652"
     
     /// Enables request logging
     static var loggingEnabled = false
+    
+    static let defaultManager: Alamofire.Manager = {
+        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        //configuration.requestCachePolicy = .ReloadIgnoringLocalCacheData
+        
+        return Alamofire.Manager(configuration: configuration)
+    }()
     
     /**
      Sends request and serialize response into JSON, may throw APIClientError
@@ -43,7 +50,7 @@ class APIClient {
             params["key"] = APIKey
             params["format"] = "json"
             
-            let request = Alamofire.request(method, APIClient.baseURL + URLString, parameters: params, encoding: encoding, headers: headers)
+            let request = APIClient.defaultManager.request(method, APIClient.baseURL + URLString, parameters: params, encoding: encoding, headers: headers)
             if loggingEnabled {
                 print(request)
                 print("Params: \(parameters)")
@@ -52,6 +59,11 @@ class APIClient {
             request.responseJSON { (response) -> Void in
                 
                 if response.result.error != nil {
+                    if loggingEnabled {
+                        print(response)
+                        print("Params: \(response.result.error!)")
+                    }
+                    
                     reject(APIClientError.RequestFailed)
                     return
                 }

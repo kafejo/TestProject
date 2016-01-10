@@ -7,26 +7,59 @@
 //
 
 import Foundation
+import Bond
 
 class WeatherViewModel: ViewModel<Weather> {
     
-    private(set) lazy var temperature: String = {
-        if let minTempC = self.model.minTempC, let maxTempC = self.model.maxTempC {
-            return "\(minTempC)-\(maxTempC)"
-        } else {
-            return "-"
+    private(set) lazy var temperature: Observable<String> = {
+        let minTempObserver: Observable<Int?> = Observable(object: self.model, keyPath: "minTempC")
+        let maxTempObserver: Observable<Int?> = Observable(object: self.model, keyPath: "maxTempC")
+        self.observers.append([minTempObserver, maxTempObserver])
+        
+        let update: (NSNumber?, NSNumber?) -> String = { (minTemp, maxTemp) in
+            if let minTemp = minTemp?.integerValue, let maxTemp = maxTemp?.integerValue {
+                return "\(minTemp)/\(maxTemp)"
+            } else if let minTemp = minTemp?.integerValue {
+                return "\(minTemp)"
+            } else if let maxTemp = maxTemp?.integerValue {
+                return "\(maxTemp)"
+            } else {
+                return "-"
+            }
         }
+        
+        let temperatureObserver: Observable<String> = Observable(update(self.model.minTempC, self.model.maxTempC))
+        
+        minTempObserver.observeNew { _ in update(self.model.minTempC, self.model.maxTempC) }
+        maxTempObserver.observeNew { _ in update(self.model.minTempC, self.model.maxTempC) }
+        
+        return temperatureObserver
     }()
+
+//    private(set) lazy var temperature: String = {
+//        if let minTemp = self.model.minTempC?.integerValue, let maxTemp = self.model.maxTempC?.integerValue {
+//            return "\(minTemp)-\(maxTemp)"
+//        } else if let minTemp = self.model.minTempC?.integerValue {
+//            return "\(minTemp)"
+//        } else if let maxTemp = self.model.maxTempC?.integerValue {
+//            return "\(maxTemp)"
+//        } else {
+//            return "-"
+//        }
+//    }()
     
     private static let dayOfWeekFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("EEE", options: 0, locale: NSLocale.currentLocale())
+        dateFormatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("EEEE", options: 0, locale: NSLocale.currentLocale())
         return dateFormatter
     }()
     
     private(set) lazy var dayOfWeekAbb: String = {
         return WeatherViewModel.dayOfWeekFormatter.stringFromDate(self.model.date!)
     }()
+    
+    // For retaining the KVO observers
+    var observers: [AnyObject] = []
     
     required init(_ model: Weather) {
         super.init(model)

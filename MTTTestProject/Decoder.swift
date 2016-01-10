@@ -7,20 +7,21 @@
 //
 
 import JASON
+import CoreData
 
 protocol DecodableManagedObject {
     typealias DecodedType = Self
-    func decode(json: JSON)
-    static func newObject(json: JSON) -> DecodedType
+    func decode(json: JSON, context: NSManagedObjectContext)
+    static func newObject(json: JSON, context: NSManagedObjectContext) -> DecodedType
 }
 
 extension CollectionType where Generator.Element: DecodableManagedObject, Generator.Element == Generator.Element.DecodedType {
     
-    static func decode(json: [JSON]) -> [Generator.Element] {
+    static func decode(json: [JSON], context: NSManagedObjectContext) -> [Generator.Element] {
         
         return json.map { json in
-            let object = Generator.Element.newObject(json)
-            object.decode(json)
+            let object = Generator.Element.newObject(json, context: context)
+            object.decode(json, context: context)
             
             return object
         }
@@ -29,15 +30,15 @@ extension CollectionType where Generator.Element: DecodableManagedObject, Genera
 }
 
 class Decoder {
-    class func decode<T where T: DecodableManagedObject, T == T.DecodedType>(json: JSON) -> T? {
-        let object = T.newObject(json)
-        object.decode(json)
+    class func decode<T where T: DecodableManagedObject, T == T.DecodedType>(json: JSON, context: NSManagedObjectContext) -> T? {
+        let object = T.newObject(json, context: context)
+        object.decode(json, context: context)
         
         return object
     }
     
-    class func decode<T where T: DecodableManagedObject, T == T.DecodedType>(json: [JSON]) -> [T]? {
-        return Array<T>.decode(json)
+    class func decode<T where T: DecodableManagedObject, T == T.DecodedType>(json: [JSON], context: NSManagedObjectContext) -> [T]? {
+        return Array<T>.decode(json, context: context)
     }
 
 }

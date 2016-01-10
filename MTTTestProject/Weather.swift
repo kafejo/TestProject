@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import JASON
+import AERecord
 
 class Weather: NSManagedObject {
 
@@ -24,14 +25,18 @@ extension Weather: DecodableManagedObject {
         return dateFormatter
     }()
     
-    static func newObject(json: JSON) -> Weather {
-        return Weather.create()
+    static func newObject(json: JSON, context: NSManagedObjectContext) -> Weather {
+        return Weather.create(context: context)
     }
     
-    func decode(json: JSON) {
+    func decode(json: JSON, context: NSManagedObjectContext) {
         self.date = json["date"].string.flatMap { Weather.dateFormatter.dateFromString($0) }
-        self.maxTempC <? json["maxtempC"]
-        self.minTempC <? json["mintempC"]
+        self.maxTempC = Int(json["maxtempC"].stringValue)
+        self.minTempC = Int(json["mintempC"].stringValue)
+        
+        if let currentTemp = Int(json["temp_C"].stringValue) {
+            self.maxTempC = currentTemp
+        }
     }
 }
 

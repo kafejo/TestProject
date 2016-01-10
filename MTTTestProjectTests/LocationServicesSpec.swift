@@ -11,20 +11,20 @@ import Nimble
 import AERecord
 @testable import MTTTestProject
 
-class WeatherServicesSpec: QuickSpec {
+class LocationServicesSpec: QuickSpec {
     override func spec() {
         
         beforeSuite {
-            StackManager.setupStack()
+            StackManager.setupStack(forTesting: true)
         }
         
-        describe("Weather services") {
+        describe("Location services") {
             
             it("can find forecast for Dublin") {
                 waitUntil(timeout: 10) { done in
-                    WeatherServices.search(locationQuery: "Dublin").then { location -> Void in
+                    LocationServices.search(locationQuery: "Dublin", context: AERecord.defaultContext).then { location -> Void in
                         expect(location.name).to(contain("Dublin"))
-                        expect(location.currentCondition).toNot(beNil())
+                        expect(location.currentCondition?.maxTempC).toNot(beNil())
                         expect(location.forecast).notTo(beNil())
                         expect(location.forecast?.count).to(equal(5))
                         done()
