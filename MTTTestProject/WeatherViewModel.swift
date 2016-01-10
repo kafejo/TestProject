@@ -35,18 +35,6 @@ class WeatherViewModel: ViewModel<Weather> {
         
         return temperatureObserver
     }()
-
-//    private(set) lazy var temperature: String = {
-//        if let minTemp = self.model.minTempC?.integerValue, let maxTemp = self.model.maxTempC?.integerValue {
-//            return "\(minTemp)-\(maxTemp)"
-//        } else if let minTemp = self.model.minTempC?.integerValue {
-//            return "\(minTemp)"
-//        } else if let maxTemp = self.model.maxTempC?.integerValue {
-//            return "\(maxTemp)"
-//        } else {
-//            return "-"
-//        }
-//    }()
     
     private static let dayOfWeekFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()

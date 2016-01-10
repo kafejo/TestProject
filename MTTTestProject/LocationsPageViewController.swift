@@ -38,10 +38,10 @@ class LocationsPageViewController: UIViewController {
         StackManager.fillWithInitialDataIfNeeded().always {
             self.loadLocations()
         }
-        
     }
 
     func loadLocations() {
+        // Fetch Locations sorted by displayOrder
         let fetchRequest = Location.createFetchRequest(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "displayOrder", ascending: true)])
         
         do {

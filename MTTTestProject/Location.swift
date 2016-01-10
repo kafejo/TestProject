@@ -19,6 +19,7 @@ class Location: NSManagedObject {
 
 extension Location: DecodableManagedObject {
     
+    /// Autoincrementing value for displaying locations in order they were inserted
     class var nextDisplayOrder: Int {
         if let lastLocation = Location.firstWithPredicate(NSPredicate(format: "displayOrder != nil"), sortDescriptors: [NSSortDescriptor(key: "displayOrder", ascending: false)], context: AERecord.backgroundContext) as? Location {
             return lastLocation.displayOrder!.integerValue + 1
@@ -48,6 +49,7 @@ extension Location: DecodableManagedObject {
 
 
 extension Location {
+    /// Fetch request for forecast, should returns Weather objects
     var fetchRequestForForecast: NSFetchRequest {
         let predicate = NSPredicate(format: "locationForecast == %@", self)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)

@@ -25,8 +25,6 @@ class WeatherTableView: UITableView {
     
 }
 
-
-
 extension UITableView {
     func registerNibForCellClass<T: UITableViewCell>(t: T.Type) {
         let nib = UINib(nibName: t.nibName, bundle: nil)
