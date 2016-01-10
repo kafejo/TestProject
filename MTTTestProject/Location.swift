@@ -21,7 +21,7 @@ extension Location: DecodableManagedObject {
     
     /// Autoincrementing value for displaying locations in order they were inserted
     class var nextDisplayOrder: Int {
-        if let lastLocation = Location.firstWithPredicate(NSPredicate(format: "displayOrder != nil"), sortDescriptors: [NSSortDescriptor(key: "displayOrder", ascending: false)], context: AERecord.backgroundContext) as? Location {
+        if let lastLocation = Location.firstWithPredicate(NSPredicate(format: "displayOrder != nil"), sortDescriptors: [NSSortDescriptor(key: "displayOrder", ascending: false)], context: AERecord.mainContext) as? Location {
             return lastLocation.displayOrder!.integerValue + 1
         } else {
             return 0
@@ -32,7 +32,7 @@ extension Location: DecodableManagedObject {
         
         if let name = json["query"].string {
             let location = Location.firstOrCreateWithAttribute("name", value: name, context: context) as! Location
-            if location.displayOrder == nil {
+            if location.displayOrder?.integerValue == -1 {
                 location.displayOrder = Location.nextDisplayOrder
             }
             return location

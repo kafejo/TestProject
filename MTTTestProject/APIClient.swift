@@ -17,7 +17,7 @@ enum APIClientError: ErrorType {
 class APIClient {
     
     private static let baseURL = "https://api.worldweatheronline.com/premium/v1"
-    private static let APIKey = "3bc440de85d822222efcb3f234652"
+    private static let APIKey = "7fe91fdbf82243deb8fe96908711c"
     
     /// Enables request logging
     static var loggingEnabled = false

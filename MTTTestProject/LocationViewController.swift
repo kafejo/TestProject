@@ -18,7 +18,7 @@ class LocationViewController: UIViewController {
             if let location = location {
                 
                 let fetchRequest = location.model.fetchRequestForForecast
-                self.weatherFRC = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AERecord.defaultContext, sectionNameKeyPath: nil, cacheName: nil)
+                self.weatherFRC = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AERecord.mainContext, sectionNameKeyPath: nil, cacheName: nil)
                 self.weatherFRC!.delegate = self
                 
                 do {
@@ -42,6 +42,7 @@ class LocationViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         if let location = self.location {
             self.locationNameLabel.text = location.name
@@ -60,26 +61,6 @@ class LocationViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // MARK: - Helpers
-    
-    func updateInformationForLocation(location: LocationViewModel) {
-//        LocationServices.updateLocation(location.model).then { location -> Void in
-//            
-//        }.error { err in
-//            print("Update location error \(err)")
-//        }
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 
 extension LocationViewController: UITableViewDataSource {
@@ -104,6 +85,11 @@ extension LocationViewController: UITableViewDataSource {
     }
 }
 
+extension LocationViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44
+    }
+}
 
 extension LocationViewController: NSFetchedResultsControllerDelegate {
     

@@ -62,9 +62,12 @@ class StackManager {
     private class func fillWithDefaultData() -> Promise<Void> {
         return Promise { success, reject in
             
-            var promises = [Promise<Location>]()
-            ["Dublin", "London", "Barcelona", "New York", "Brno"].forEach { location in
-                promises.append(LocationServices.search(locationQuery: location))
+            var promises = [Promise<Void>]()
+            let locationNames = ["Brno", "Barcelona", "New York", "London", "Dublin"]
+            locationNames.forEach { locationName in
+                promises.append(LocationServices.search(locationQuery: locationName).then { location -> Void in
+                        location.displayOrder = locationNames.indexOf(locationName)
+                    })
             }
             when(promises).then { _ -> Void in
                 AERecord.saveContextAndWait(AERecord.backgroundContext)

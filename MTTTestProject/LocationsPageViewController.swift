@@ -37,22 +37,31 @@ class LocationsPageViewController: UIViewController {
         self.pageViewController.dataSource = self
         self.pageViewController.delegate = self
         self.pageControl.currentPage = 0
-        
+
         self.activityIndicator.startAnimating()
         
         StackManager.fillWithInitialDataIfNeeded().always {
             self.loadLocations()
             self.activityIndicator.stopAnimating()
             self.activityLabel.hidden = true
+        }.error { err in
+            print("Error: \(err)")
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadLocations", name: AddLocationViewController.AddLocationVCDidAddLocationNotification, object: nil)
+    }
+    
+    deinit {
+        // This is not necessary for iOS 9 and higher
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     func loadLocations() {
         // Fetch Locations sorted by displayOrder
-        let fetchRequest = Location.createFetchRequest(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "displayOrder", ascending: true)])
+        let fetchRequest = Location.createFetchRequest(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "displayOrder", ascending: false)])
         
         do {
-            self.locations = try AERecord.defaultContext.executeFetchRequest(fetchRequest) as! [Location]
+            self.locations = try AERecord.mainContext.executeFetchRequest(fetchRequest) as! [Location]
         } catch {
             assertionFailure("*** Unable to fetch locations")
         }
@@ -60,7 +69,8 @@ class LocationsPageViewController: UIViewController {
         if let firstModel = self.locationForIndex(0) {
             let firstViewController = self.viewControllerForIndex(firstModel.model)
             firstViewController.location = self.locationForIndex(0)
-            self.pageViewController.setViewControllers([firstViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+            self.pageControl.currentPage = 0
+            self.pageViewController.setViewControllers([firstViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         }
     }
     

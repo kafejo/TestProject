@@ -20,10 +20,6 @@ class LocationServices {
     
     static let updateInterval: NSTimeInterval = 15 * 60 // 15 minutes
     
-    class func fetchInformationsForLocation(location: Location) -> Promise<Location> {
-        return search(locationQuery: location.name!)
-    }
-    
     /// Update location if lastUpdate timestamp exceed the update interval  
     class func updateLocation(location: Location) -> Promise<Void> {
         
@@ -36,7 +32,7 @@ class LocationServices {
 
             search(locationQuery: location.name!).then { loc -> Void in
                 loc.lastUpdate = NSDate(timeIntervalSinceNow: updateInterval)
-                AERecord.saveContext(AERecord.backgroundContext)
+                AERecord.saveContext(loc.managedObjectContext!)
                 fulfill()
             }.error(reject)
         }
@@ -65,7 +61,10 @@ class LocationServices {
                 APIClient.requestJSON(.GET, URLString: "/weather.ashx", parameters: params).then { json -> Void in
                     
                     if json["data"]["error"].object != nil {
-                        throw LocationServicesError.DataError
+                        dispatch_async(dispatch_get_main_queue()) {
+                            reject(LocationServicesError.DataError)
+                        }
+                        return
                     }
                     
                     
@@ -86,6 +85,10 @@ class LocationServices {
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         fulfill(location)
+                    }
+                }.error { err in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        reject(err)
                     }
                 }
             }

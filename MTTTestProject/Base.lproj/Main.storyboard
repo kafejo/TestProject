@@ -37,8 +37,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching the weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDo-zq-mS2">
-                                <rect key="frame" x="80" y="304.5" width="160.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDo-zq-mS2">
+                                <rect key="frame" x="94.5" y="304.5" width="131.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" red="0.16078431900000001" green="0.16078431900000001" blue="0.16078431900000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -187,7 +187,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enQ-gZ-peS">
-                                <rect key="frame" x="15" y="221.5" width="290" height="125"/>
+                                <rect key="frame" x="15" y="186" width="290" height="135"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRO-Te-2hs">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="20.5"/>
@@ -195,17 +195,20 @@
                                         <color key="textColor" red="0.16078431369999999" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search query" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yD3-nR-6LT">
-                                        <rect key="frame" x="0.0" y="35" width="290" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search query" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yD3-nR-6LT">
+                                        <rect key="frame" x="0.0" y="35" width="290" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="iJA-Qc-4GB"/>
+                                            <constraint firstAttribute="height" constant="40" id="iJA-Qc-4GB"/>
                                         </constraints>
                                         <color key="textColor" red="0.16078431369999999" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textFieldValueDidChange:" destination="iG2-kO-t0y" eventType="editingChanged" id="TMo-j0-bWi"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4b-yM-ywW">
-                                        <rect key="frame" x="0.0" y="85" width="290" height="40"/>
+                                        <rect key="frame" x="0.0" y="95" width="290" height="40"/>
                                         <color key="backgroundColor" red="0.13333334029999999" green="0.81176471709999998" blue="0.55294120309999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="LZZ-MA-9bY"/>
@@ -215,6 +218,9 @@
                                             <action selector="addLocation:" destination="iG2-kO-t0y" eventType="touchUpInside" id="hFc-Va-gV1"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jme-wB-Ari">
+                                        <rect key="frame" x="255" y="45" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -226,9 +232,11 @@
                                     <constraint firstAttribute="trailing" secondItem="CRO-Te-2hs" secondAttribute="trailing" id="HhA-0g-Afd"/>
                                     <constraint firstItem="yD3-nR-6LT" firstAttribute="leading" secondItem="enQ-gZ-peS" secondAttribute="leading" id="OAj-OW-VXN"/>
                                     <constraint firstAttribute="width" constant="290" id="RoE-DG-Cxy"/>
+                                    <constraint firstAttribute="trailing" secondItem="jme-wB-Ari" secondAttribute="trailing" constant="15" id="SEf-Ur-45H"/>
                                     <constraint firstItem="e4b-yM-ywW" firstAttribute="leading" secondItem="enQ-gZ-peS" secondAttribute="leading" id="V3Y-Pe-Tva"/>
                                     <constraint firstItem="CRO-Te-2hs" firstAttribute="top" secondItem="enQ-gZ-peS" secondAttribute="top" id="XOj-c4-5fW"/>
                                     <constraint firstAttribute="trailing" secondItem="e4b-yM-ywW" secondAttribute="trailing" id="Y9n-r8-U2x"/>
+                                    <constraint firstItem="jme-wB-Ari" firstAttribute="centerY" secondItem="yD3-nR-6LT" secondAttribute="centerY" id="aaZ-ao-TNh"/>
                                     <constraint firstAttribute="bottom" secondItem="e4b-yM-ywW" secondAttribute="bottom" id="jK4-H2-Jmu"/>
                                     <constraint firstItem="CRO-Te-2hs" firstAttribute="leading" secondItem="enQ-gZ-peS" secondAttribute="leading" id="rPK-6S-zFN"/>
                                 </constraints>
@@ -250,13 +258,22 @@
                                     <action selector="dismiss:" destination="iG2-kO-t0y" eventType="touchUpInside" id="Ih3-Ym-1qR"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m28-xP-PlH">
+                                <rect key="frame" x="15" y="134" width="290" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="m28-xP-PlH" secondAttribute="trailing" constant="15" id="2BL-hu-hiy"/>
+                            <constraint firstItem="enQ-gZ-peS" firstAttribute="top" secondItem="m28-xP-PlH" secondAttribute="bottom" constant="40" id="2EM-AB-osb"/>
                             <constraint firstItem="CtZ-Je-8at" firstAttribute="leading" secondItem="d1R-wp-Rw3" secondAttribute="leading" constant="5" id="2FU-lq-o9V"/>
                             <constraint firstItem="enQ-gZ-peS" firstAttribute="centerX" secondItem="d1R-wp-Rw3" secondAttribute="centerX" id="FlJ-hc-SYm"/>
+                            <constraint firstItem="m28-xP-PlH" firstAttribute="leading" secondItem="d1R-wp-Rw3" secondAttribute="leading" constant="15" id="Jz1-BZ-csR"/>
                             <constraint firstItem="enQ-gZ-peS" firstAttribute="centerX" secondItem="d1R-wp-Rw3" secondAttribute="centerX" id="U4V-Ts-ySN"/>
-                            <constraint firstItem="enQ-gZ-peS" firstAttribute="centerY" secondItem="d1R-wp-Rw3" secondAttribute="centerY" id="eXS-VM-rjK"/>
+                            <constraint firstItem="enQ-gZ-peS" firstAttribute="centerY" secondItem="d1R-wp-Rw3" secondAttribute="centerY" constant="-30" id="eXS-VM-rjK"/>
                             <constraint firstItem="CtZ-Je-8at" firstAttribute="top" secondItem="9J5-Pj-qH6" secondAttribute="bottom" constant="5" id="i4z-Yx-fu2"/>
                         </constraints>
                         <variation key="default">
@@ -267,8 +284,10 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="jme-wB-Ari" id="bpX-oX-uPW"/>
                         <outlet property="addButton" destination="e4b-yM-ywW" id="tyn-lO-CqH"/>
                         <outlet property="containerYConstraint" destination="eXS-VM-rjK" id="7nt-zN-s0F"/>
+                        <outlet property="locationLabel" destination="m28-xP-PlH" id="6fL-1d-j9E"/>
                         <outlet property="textField" destination="yD3-nR-6LT" id="dwv-fP-lEK"/>
                     </connections>
                 </viewController>
