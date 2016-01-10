@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         StackManager.setupStack()
         
         #if DEBUG
-            APIClient.loggingEnabled = true
+           // APIClient.loggingEnabled = true
         #endif
         
         return true

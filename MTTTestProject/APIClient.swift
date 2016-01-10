@@ -24,6 +24,8 @@ class APIClient {
     
     static let defaultManager: Alamofire.Manager = {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+
+        // Uncomment this for ignoring HTTP cache
         //configuration.requestCachePolicy = .ReloadIgnoringLocalCacheData
         
         return Alamofire.Manager(configuration: configuration)
@@ -58,33 +60,45 @@ class APIClient {
             
             request.responseJSON { (response) -> Void in
                 
-                if response.result.error != nil {
-                    if loggingEnabled {
-                        print(response)
-                        print("Params: \(response.result.error!)")
+                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                    
+                    if response.result.error != nil {
+                        if loggingEnabled {
+                            print(response)
+                            print("Params: \(response.result.error!)")
+                        }
+                        dispatch_async(dispatch_get_main_queue()) {
+                            reject(APIClientError.RequestFailed)
+                        }
+                        
+                        return
                     }
                     
-                    reject(APIClientError.RequestFailed)
-                    return
-                }
-                
-                if let statusCode = response.response?.statusCode where statusCode >= 300 {
-                    
-                    if loggingEnabled {
-                        print("Request failed with status code: \(statusCode)")
+                    if let statusCode = response.response?.statusCode where statusCode >= 300 {
+                        
+                        if loggingEnabled {
+                            print("Request failed with status code: \(statusCode)")
+                        }
+                        dispatch_async(dispatch_get_main_queue()) {
+                            reject(APIClientError.RequestFailed)
+                        }
+                        return
                     }
-                    reject(APIClientError.RequestFailed)
-                    return
-                }
-                
-                if let jsonData = response.result.value {
                     
-                    if loggingEnabled {
-                        print(jsonData)
+                    if let jsonData = response.result.value {
+                        
+                        if loggingEnabled {
+                            print(jsonData)
+                        }
+                        dispatch_async(dispatch_get_main_queue()) {
+                            success(JSON(jsonData))
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            reject(APIClientError.RequestFailed)
+                        }
                     }
-                    success(JSON(jsonData))
-                } else {
-                    reject(APIClientError.RequestFailed)
                 }
             }
             

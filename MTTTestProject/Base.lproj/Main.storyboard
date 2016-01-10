@@ -33,17 +33,43 @@
                                     <segue destination="iG2-kO-t0y" kind="presentation" modalTransitionStyle="flipHorizontal" id="dC5-78-ybr"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Vsj-C5-t7r">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching the weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDo-zq-mS2">
+                                <rect key="frame" x="80" y="304.5" width="160.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" red="0.16078431900000001" green="0.16078431900000001" blue="0.16078431900000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Vfa-bf-coB" firstAttribute="top" secondItem="hn2-1L-vEn" secondAttribute="bottom" constant="50" id="4Mm-bh-ppg"/>
                             <constraint firstAttribute="trailing" secondItem="06j-qR-xkX" secondAttribute="trailing" constant="5" id="9nH-g4-Fbw"/>
+                            <constraint firstAttribute="trailing" secondItem="Vsj-C5-t7r" secondAttribute="trailing" id="9sA-54-WTo"/>
+                            <constraint firstItem="Vsj-C5-t7r" firstAttribute="top" secondItem="0fS-am-jDK" secondAttribute="bottom" constant="-10" id="FRw-qn-o7q"/>
+                            <constraint firstItem="Vsj-C5-t7r" firstAttribute="leading" secondItem="ZoY-v3-R6d" secondAttribute="leading" id="UsL-Kd-sIg"/>
+                            <constraint firstItem="kDo-zq-mS2" firstAttribute="centerX" secondItem="ZoY-v3-R6d" secondAttribute="centerX" id="fcC-sN-mTq"/>
+                            <constraint firstItem="kDo-zq-mS2" firstAttribute="centerY" secondItem="ZoY-v3-R6d" secondAttribute="centerY" constant="30" id="krP-Fv-O2u"/>
                             <constraint firstItem="hn2-1L-vEn" firstAttribute="centerX" secondItem="ZoY-v3-R6d" secondAttribute="centerX" id="rDL-6E-Vya"/>
+                            <constraint firstItem="Vfa-bf-coB" firstAttribute="top" secondItem="Vsj-C5-t7r" secondAttribute="bottom" id="wYY-sL-Tzf"/>
                             <constraint firstItem="06j-qR-xkX" firstAttribute="top" secondItem="0fS-am-jDK" secondAttribute="bottom" constant="5" id="wnm-mn-HTS"/>
+                            <constraint firstItem="Vsj-C5-t7r" firstAttribute="top" secondItem="ZoY-v3-R6d" secondAttribute="top" id="y4W-bD-BdW"/>
+                            <constraint firstItem="hn2-1L-vEn" firstAttribute="top" secondItem="Vsj-C5-t7r" secondAttribute="bottom" id="yx5-JW-kQS"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FRw-qn-o7q"/>
+                                <exclude reference="yx5-JW-kQS"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Vsj-C5-t7r" id="Kou-t6-2uN"/>
+                        <outlet property="activityLabel" destination="kDo-zq-mS2" id="7le-bF-KuJ"/>
                         <outlet property="pageControl" destination="hn2-1L-vEn" id="Qak-Xa-Sb3"/>
                     </connections>
                 </viewController>

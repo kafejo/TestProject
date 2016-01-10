@@ -12,6 +12,9 @@ import AERecord
 
 class LocationsPageViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var activityLabel: UILabel!
+    
     var pageViewController: UIPageViewController!
     var cache: NSCache = NSCache()
     var locations: [Location] = [] {
@@ -35,8 +38,12 @@ class LocationsPageViewController: UIViewController {
         self.pageViewController.delegate = self
         self.pageControl.currentPage = 0
         
+        self.activityIndicator.startAnimating()
+        
         StackManager.fillWithInitialDataIfNeeded().always {
             self.loadLocations()
+            self.activityIndicator.stopAnimating()
+            self.activityLabel.hidden = true
         }
     }
 
