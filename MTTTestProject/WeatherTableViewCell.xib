@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uP3-fS-K2Q">
-                        <rect key="frame" x="289" y="10" width="15.5" height="16"/>
+                        <rect key="frame" x="289" y="11" width="15.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                         <color key="textColor" red="0.16078431369999999" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -57,8 +57,8 @@
                     <constraint firstItem="zwC-dK-fNW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QVG-4O-2HC"/>
                     <constraint firstAttribute="trailing" secondItem="uP3-fS-K2Q" secondAttribute="trailing" constant="15" id="aiI-qy-Ncn"/>
                     <constraint firstItem="bP6-6o-Ivp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bjL-Ef-Yih"/>
-                    <constraint firstItem="uP3-fS-K2Q" firstAttribute="top" secondItem="bP6-6o-Ivp" secondAttribute="top" id="jz9-Ok-DiM"/>
-                    <constraint firstItem="uP3-fS-K2Q" firstAttribute="leading" secondItem="bP6-6o-Ivp" secondAttribute="trailing" constant="2" id="ykS-1v-aDb"/>
+                    <constraint firstItem="uP3-fS-K2Q" firstAttribute="top" secondItem="bP6-6o-Ivp" secondAttribute="top" constant="1" id="jz9-Ok-DiM"/>
+                    <constraint firstItem="uP3-fS-K2Q" firstAttribute="leading" secondItem="bP6-6o-Ivp" secondAttribute="trailing" constant="1" id="ykS-1v-aDb"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
