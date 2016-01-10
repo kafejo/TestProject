@@ -35,8 +35,8 @@ class WeatherViewModelSpec: QuickSpec {
             }
             
             // With setting language to English and locale to Ireland
-            it("has week day abbreviation of it day") {
-                expect(weatherViewModel.dayOfWeekAbb).to(equal("Saturday"), description: "This test depends on region and language settings of testing device")
+            it("has week day") {
+                expect(weatherViewModel.dayOfWeek).to(equal("Saturday"), description: "This test depends on region and language settings of testing device")
             }
         }
     }

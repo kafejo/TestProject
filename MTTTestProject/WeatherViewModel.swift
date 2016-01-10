@@ -42,7 +42,7 @@ class WeatherViewModel: ViewModel<Weather> {
         return dateFormatter
     }()
     
-    private(set) lazy var dayOfWeekAbb: String = {
+    private(set) lazy var dayOfWeek: String = {
         return WeatherViewModel.dayOfWeekFormatter.stringFromDate(self.model.date!)
     }()
     

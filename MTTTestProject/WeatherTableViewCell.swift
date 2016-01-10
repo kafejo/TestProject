@@ -27,7 +27,7 @@ class WeatherTableViewCell: UITableViewCell {
     }
     
     func configureWithWeather(weather: WeatherViewModel) {
-        dayLabel.text = weather.dayOfWeekAbb.uppercaseString
+        dayLabel.text = weather.dayOfWeek.uppercaseString
         temperatureLabel.text = weather.temperature.value
     }
     

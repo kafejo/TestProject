@@ -24,7 +24,6 @@ class LocationServices {
         return search(locationQuery: location.name!)
     }
     
-    
     /// Update location if lastUpdate timestamp exceed the update interval  
     class func updateLocation(location: Location) -> Promise<Void> {
         
