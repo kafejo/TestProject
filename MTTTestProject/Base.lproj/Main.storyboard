@@ -16,9 +16,23 @@
                     <view key="view" contentMode="scaleToFill" id="ZoY-v3-R6d">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hn2-1L-vEn">
+                                <rect key="frame" x="141" y="481" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="0.13333334029999999" green="0.81176471709999998" blue="0.55294120309999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vfa-bf-coB" firstAttribute="top" secondItem="hn2-1L-vEn" secondAttribute="bottom" constant="50" id="4Mm-bh-ppg"/>
+                            <constraint firstItem="hn2-1L-vEn" firstAttribute="centerX" secondItem="ZoY-v3-R6d" secondAttribute="centerX" id="rDL-6E-Vya"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="pageControl" destination="hn2-1L-vEn" id="Qak-Xa-Sb3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QBG-PA-p8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

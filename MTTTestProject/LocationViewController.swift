@@ -13,7 +13,7 @@ import Bond
 
 class LocationViewController: UIViewController {
 
-    var location: LocationViewModel? {
+    var location: LocationViewModel! {
         didSet {
             if let location = location {
                 

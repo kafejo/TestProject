@@ -14,7 +14,13 @@ class LocationsPageViewController: UIViewController {
 
     var pageViewController: UIPageViewController!
     var cache: NSCache = NSCache()
-    var locations: [Location] = []
+    var locations: [Location] = [] {
+        didSet {
+            self.pageControl.numberOfPages = locations.count
+        }
+    }
+    
+    @IBOutlet weak var pageControl: UIPageControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +29,11 @@ class LocationsPageViewController: UIViewController {
         
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
+        self.view.sendSubviewToBack(self.pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
         self.pageViewController.dataSource = self
+        self.pageViewController.delegate = self
+        self.pageControl.currentPage = 0
         
         StackManager.fillWithInitialDataIfNeeded().always {
             self.loadLocations()
@@ -109,6 +118,16 @@ extension LocationsPageViewController: UIPageViewControllerDataSource {
         } else {
             
             return nil
+        }
+    }
+}
+
+extension LocationsPageViewController: UIPageViewControllerDelegate {
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        pageViewController
+        
+        if let currentViewController = pageViewController.viewControllers?.first as? LocationViewController, let index = self.locations.indexOf(currentViewController.location.model) {
+            self.pageControl.currentPage = index
         }
     }
 }
