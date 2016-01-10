@@ -36,6 +36,8 @@ class LocationViewController: UIViewController {
     @IBOutlet weak var tableView: WeatherTableView!
     var weatherFRC: NSFetchedResultsController?
     
+    // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,6 +65,8 @@ class LocationViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension LocationViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(WeatherTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! WeatherTableViewCell
@@ -85,11 +89,15 @@ extension LocationViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension LocationViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44
     }
 }
+
+// MARK: - NSFetchedResultsControllerDelegate
 
 extension LocationViewController: NSFetchedResultsControllerDelegate {
     

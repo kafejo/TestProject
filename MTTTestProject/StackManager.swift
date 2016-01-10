@@ -30,14 +30,7 @@ class StackManager {
         do {
             try AERecord.loadCoreDataStack(managedObjectModel: model, storeType: NSSQLiteStoreType, configuration: nil, storeURL: myStoreURL, options: stackOptions)
         } catch {
-            // FIXME: Only for first version
-            do {
-                try NSFileManager.defaultManager().removeItemAtURL(myStoreURL)
-                try AERecord.loadCoreDataStack(managedObjectModel: model, storeType: NSSQLiteStoreType, configuration: nil, storeURL: myStoreURL, options: stackOptions)
-                
-            } catch {
-                assertionFailure("*** StackManager ERROR: Cannot load core data stack! (Probably bad migration)")
-            }
+            assertionFailure("*** StackManager ERROR: Cannot load core data stack! (Probably bad migration)")
         }
 
     }

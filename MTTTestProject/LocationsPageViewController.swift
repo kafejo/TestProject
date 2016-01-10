@@ -25,6 +25,8 @@ class LocationsPageViewController: UIViewController {
     
     @IBOutlet weak var pageControl: UIPageControl!
     
+    // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,11 +53,20 @@ class LocationsPageViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadLocations", name: AddLocationViewController.AddLocationVCDidAddLocationNotification, object: nil)
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+        // Remove all cached controller in order to free up the memory
+        self.cache.removeAllObjects()
+    }
+    
     deinit {
         // This is not necessary for iOS 9 and higher
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
+    // MARK: - Content
+    
     func loadLocations() {
         // Fetch Locations sorted by displayOrder
         let fetchRequest = Location.createFetchRequest(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "displayOrder", ascending: false)])
@@ -72,11 +83,6 @@ class LocationsPageViewController: UIViewController {
             self.pageControl.currentPage = 0
             self.pageViewController.setViewControllers([firstViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Helpers
@@ -102,6 +108,8 @@ class LocationsPageViewController: UIViewController {
         return LocationViewModel(self.locations[index])
     }
 }
+
+// MARK: - UIPageViewControllerDataSource
 
 extension LocationsPageViewController: UIPageViewControllerDataSource {
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
@@ -138,6 +146,8 @@ extension LocationsPageViewController: UIPageViewControllerDataSource {
         }
     }
 }
+
+// MARK: - UIPageViewControllerDelegate
 
 extension LocationsPageViewController: UIPageViewControllerDelegate {
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
